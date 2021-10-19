@@ -1,0 +1,22 @@
+server:
+  port: 8079
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: project-proxy
+  server:
+    ip: 127.0.0.1
+    port: 18848
+  cloud:
+    nacos:
+      common-file: common-config.yaml
+      common-file-group: prod
+        discovery:
+          server-addr: ${spring.server.ip}:${spring.server.port}
+          group: prod
+        config:
+          server-addr: ${spring.server.ip}:${spring.server.port}
+          group: prod
+          prefix: ${spring.application.name}
+          file-extension: yaml
